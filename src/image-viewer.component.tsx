@@ -14,6 +14,8 @@ import {
   View,
   ViewStyle
 } from 'react-native';
+
+import { ImageCacheManager } from 'react-native-cached-image';
 import ImageZoom from 'react-native-image-pan-zoom';
 import styles from './image-viewer.style';
 import { IImageInfo, IImageSize, Props, State } from './image-viewer.type';
@@ -21,6 +23,8 @@ import { IImageInfo, IImageSize, Props, State } from './image-viewer.type';
 export default class ImageViewer extends React.Component<Props, State> {
   public static defaultProps = new Props();
   public state = new State();
+
+  public cacheManager = (ImageCacheManager as any)();
 
   // 背景透明度渐变动画
   private fadeAnim = new Animated.Value(0);
@@ -124,7 +128,7 @@ export default class ImageViewer extends React.Component<Props, State> {
   /**
    * 加载图片，主要是获取图片长与宽
    */
-  public loadImage(index: number) {
+  public async loadImage(index: number) {
     if (!this!.state!.imageSizes![index]) {
       return;
     }
@@ -171,8 +175,10 @@ export default class ImageViewer extends React.Component<Props, State> {
       imageLoaded = true;
     }
 
+    const cacheUrl = await this.cacheManager.downloadAndCacheUrl(image.url, { useQueryParamsInCacheKey: true });
+
     Image.getSize(
-      image.url,
+      cacheUrl,
       (width: number, height: number) => {
         imageStatus.width = width;
         imageStatus.height = height;

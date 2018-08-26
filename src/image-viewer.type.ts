@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Image, ImageURISource, Text, View, ViewStyle } from 'react-native';
+import { ImageURISource, Text, View, ViewStyle } from 'react-native';
+import { CachedImage } from 'react-native-cached-image';
 import { simpleStyle } from './image-viewer.style';
 
 export class Props {
@@ -122,7 +123,7 @@ export class Props {
    * Render image component
    */
   public renderImage?: (props: any) => React.ReactElement<any> = (props: any) => {
-    return React.createElement(Image, props);
+    return React.createElement(CachedImage, props);
   };
 
   /**

@@ -1,7 +1,7 @@
 {
-  "name": "react-native-image-zoom-viewer",
+  "name": "react-native-offline-image-viewer",
   "version": "2.2.15",
-  "description": "react native image viewer,大图浏览",
+  "description": "react native offline image viewer,大图浏览",
   "main": "built/index.js",
   "types": "src/index.ts",
   "scripts": {
@@ -10,15 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ascoders/react-native-image-viewer.git"
+    "url": "https://github.com/BasitAli/react-native-offline-image-viewer.git"
   },
   "keywords": [
     "image-viewer"
   ],
-  "author": "ascoders",
+  "author": "BasitAli",
   "license": "MIT",
   "dependencies": {
-    "react-native-image-pan-zoom": "^2.1.8"
+    "react-native-image-pan-zoom": "^2.1.8",
+    "react-native-cached-image": "https://github.com/kfiroo/react-native-cached-image.git#v1.4.3"
   },
   "peerDependencies": {
     "react": "*",
